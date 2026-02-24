@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Platform - Full Component Structure</title>
+    <link rel="stylesheet" href="styles.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path d="M16 4L4 12V24L16 32L28 24V12L16 4Z" fill="#4F46E5"/>
+                    <path d="M16 8L8 14V22L16 28L24 22V14L16 8Z" fill="#818CF8"/>
+                </svg>
+                <span>CloudPlatform</span>
+            </div>
+            <nav class="main-nav">
+                <a href="#" class="nav-link active" data-section="files">Files</a>
+                <a href="#" class="nav-link" data-section="deploy">Deploy</a>
+                <a href="#" class="nav-link" data-section="storage">Storage</a>
+                <a href="#" class="nav-link" data-section="account">Account</a>
+            </nav>
+        </div>
+        <div class="header-right">
+            <div class="storage-indicator">
+                <span class="storage-used">2.4 GB</span>
+                <span class="storage-separator">/</span>
+                <span class="storage-total">3 GB</span>
+            </div>
+            <div class="user-menu">
+                <button class="user-avatar" id="userMenuBtn">
+                    <img src="https://ui-avatars.com/api/?name=User&background=4F46E5&color=fff" alt="User">
+                </button>
+                <div class="user-dropdown" id="userDropdown">
+                    <a href="#" class="dropdown-item" data-action="profile">Profile</a>
+                    <a href="#" class="dropdown-item" data-action="settings">Settings</a>
+                    <hr class="dropdown-divider">
+                    <a href="#" class="dropdown-item" data-action="logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Files Section -->
+        <section class="section active" id="files-section">
+            <div class="section-header">
+                <h2>File Manager</h2>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="uploadFileBtn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M8 2L8 10M8 10L5 7M8 10L11 7M2 13L14 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Upload File
+                    </button>
+                    <button class="btn btn-secondary" id="uploadFolderBtn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M2 4L6 4L7 5L14 5C14.5523 5 15 5.44772 15 6L15 12C15 12.5523 14.5523 13 14 13L2 13C1.44772 13 1 12.5523 1 12L1 5C1 4.44772 1.44772 4 2 4Z"/>
+                        </svg>
+                        Upload Folder
+                    </button>
+                    <button class="btn btn-secondary" id="uploadZipBtn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M1 3L1 13C1 13.5523 1.44772 14 2 14L14 14C14.5523 14 15 13.5523 15 13L15 5L10 5L9 4L2 4C1.44772 4 1 3.55228 1 3Z"/>
+                        </svg>
+                        Upload ZIP
+                    </button>
+                    <button class="btn btn-secondary" id="newFileBtn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M8 2L8 14M2 8L14 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        New File
+                    </button>
+                    <button class="btn btn-secondary" id="newFolderBtn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M2 4L6 4L7 5L14 5C14.5523 5 15 5.44772 15 6L15 12C15 12.5523 14.5523 13 14 13L2 13C1.44772 13 1 12.5523 1 12L1 5C1 4.44772 1.44772 4 2 4Z"/>
+                        </svg>
+                        New Folder
+                    </button>
+                    <button class="btn btn-success" id="previewBtn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M1 8C1 8 3.5 4 8 4C12.5 4 15 8 15 8C15 8 12.5 12 8 12C3.5 12 1 8 1 8Z"/>
+                            <circle cx="8" cy="8" r="2"/>
+                        </svg>
+                        Preview
+                    </button>
+                </div>
+            </div>
+
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="#" class="breadcrumb-item" data-path="/">Home</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-item active">Projects</span>
+            </div>
+
+            <!-- File Grid -->
+            <div class="file-grid" id="fileGrid">
+                <!-- Files will be dynamically added here -->
+            </div>
+        </section>
+
+        <!-- Deploy Section -->
+        <section class="section" id="deploy-section">
+            <div class="section-header">
+                <h2>Deployment</h2>
+            </div>
+
+            <div class="deploy-container">
+                <div class="deploy-card">
+                    <h3>Deploy Your Project</h3>
+                    <p class="deploy-description">Choose your deployment settings and go live in seconds.</p>
+                    
+                    <div class="form-group">
+                        <label>Main File</label>
+                        <div class="main-file-selector">
+                            <select id="mainFileSelect" class="form-control">
+                                <option value="auto">Auto-detect index.html</option>
+                                <option value="manual">Choose manually</option>
+                            </select>
+                            <select id="manualFileSelect" class="form-control" style="display: none;">
+                                <option value="index.html">index.html</option>
+                                <option value="main.html">main.html</option>
+                                <option value="app.html">app.html</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Project URL</label>
+                        <div class="url-options">
+                            <label class="radio-option">
+                                <input type="radio" name="urlType" value="subdomain" checked>
+                                <span>https://<input type="text" id="subdomainInput" class="url-input" placeholder="projectname">.yourcloud.com</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="urlType" value="path">
+                                <span>https://yourcloud.com/<input type="text" id="pathInput" class="url-input" placeholder="projectname"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Custom Domain (Optional)</label>
+                        <input type="text" id="customDomainInput" class="form-control" placeholder="www.yourdomain.com">
+                    </div>
+
+                    <div class="ssl-badge">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M8 1C5.79086 1 4 2.79086 4 5V6H3C2.44772 6 2 6.44772 2 7V13C2 13.5523 2.44772 14 3 14H13C13.5523 14 14 13.5523 14 13V7C14 6.44772 13.5523 6 13 6H12V5C12 2.79086 10.2091 1 8 1ZM8 3C9.10457 3 10 3.89543 10 5V6H6V5C6 3.89543 6.89543 3 8 3Z"/>
+                        </svg>
+                        <span>Auto SSL (HTTPS) Enabled</span>
+                    </div>
+
+                    <button class="btn btn-primary btn-large" id="deployBtn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M8 2L8 10M8 10L5 7M8 10L11 7M2 13L14 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Deploy Now
+                    </button>
+                </div>
+
+                <div class="deploy-history">
+                    <h3>Deployment History</h3>
+                    <div class="history-list" id="historyList">
+                        <!-- History items will be added dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Storage Section -->
+        <section class="section" id="storage-section">
+            <div class="section-header">
+                <h2>Storage Plan</h2>
+            </div>
+
+            <div class="storage-container">
+                <div class="storage-card current-plan">
+                    <div class="plan-header">
+                        <h3>Current Plan</h3>
+                        <span class="plan-badge">Active</span>
+                    </div>
+                    <div class="plan-details">
+                        <div class="plan-size">3 GB</div>
+                        <div class="plan-price">Free</div>
+                    </div>
+                    <div class="storage-meter">
+                        <div class="meter-bar">
+                            <div class="meter-fill" style="width: 80%;"></div>
+                        </div>
+                        <div class="meter-info">
+                            <span>2.4 GB Used</span>
+                            <span>0.6 GB Available</span>
+                        </div>
+                    </div>
+                    <div class="plan-features">
+                        <div class="feature-item">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            </svg>
+                            <span>1 Folder Included</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            </svg>
+                            <span>Basic Deployment</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            </svg>
+                            <span>SSL Certificate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="upgrade-plans">
+                    <h3>Upgrade Your Plan</h3>
+                    <div class="plans-grid">
+                        <div class="plan-card">
+                            <div class="plan-name">Starter</div>
+                            <div class="plan-size">10 GB</div>
+                            <div class="plan-price">$5<span>/month</span></div>
+                            <ul class="plan-features-list">
+                                <li>3 Folders</li>
+                                <li>Priority Deployment</li>
+                                <li>Custom Domain</li>
+                                <li>24/7 Support</li>
+                            </ul>
+                            <button class="btn btn-primary">Upgrade</button>
+                        </div>
+                        <div class="plan-card featured">
+                            <div class="popular-badge">Popular</div>
+                            <div class="plan-name">Professional</div>
+                            <div class="plan-size">50 GB</div>
+                            <div class="plan-price">$15<span>/month</span></div>
+                            <ul class="plan-features-list">
+                                <li>10 Folders</li>
+                                <li>Priority Deployment</li>
+                                <li>Custom Domain</li>
+                                <li>24/7 Support</li>
+                                <li>Analytics</li>
+                                <li>Team Collaboration</li>
+                            </ul>
+                            <button class="btn btn-primary">Upgrade</button>
+                        </div>
+                        <div class="plan-card">
+                            <div class="plan-name">Enterprise</div>
+                            <div class="plan-size">200 GB</div>
+                            <div class="plan-price">$49<span>/month</span></div>
+                            <ul class="plan-features-list">
+                                <li>Unlimited Folders</li>
+                                <li>Priority Deployment</li>
+                                <li>Custom Domain</li>
+                                <li>24/7 Support</li>
+                                <li>Advanced Analytics</li>
+                                <li>Team Collaboration</li>
+                                <li>API Access</li>
+                            </ul>
+                            <button class="btn btn-primary">Upgrade</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Account Section -->
+        <section class="section" id="account-section">
+            <div class="section-header">
+                <h2>Account Settings</h2>
+            </div>
+
+            <div class="account-container">
+                <div class="account-tabs">
+                    <button class="tab-btn active" data-tab="profile">Profile</button>
+                    <button class="tab-btn" data-tab="security">Security</button>
+                    <button class="tab-btn" data-tab="danger">Danger Zone</button>
+                </div>
+
+                <div class="account-content">
+                    <!-- Profile Tab -->
+                    <div class="tab-content active" id="profile-tab">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" class="form-control" value="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" value="john@example.com">
+                            <span class="form-hint">Verified ✓</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Avatar</label>
+                            <div class="avatar-upload">
+                                <img src="https://ui-avatars.com/api/?name=John+Doe&background=4F46E5&color=fff&size=100" alt="Avatar">
+                                <button class="btn btn-secondary">Change Avatar</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary">Save Changes</button>
+                    </div>
+
+                    <!-- Security Tab -->
+                    <div class="tab-content" id="security-tab">
+                        <div class="form-group">
+                            <label>Current Password</label>
+                            <input type="password" class="form-control" placeholder="Enter current password">
+                        </div>
+                        <div class="form-group">
+                            <label>New Password</label>
+                            <input type="password" class="form-control" placeholder="Enter new password">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm New Password</label>
+                            <input type="password" class="form-control" placeholder="Confirm new password">
+                        </div>
+                        <button class="btn btn-primary">Update Password</button>
+
+                        <hr class="divider">
+
+                        <div class="two-factor-section">
+                            <h4>Two-Factor Authentication</h4>
+                            <p>Add an extra layer of security to your account.</p>
+                            <button class="btn btn-secondary">Enable 2FA</button>
+                        </div>
+                    </div>
+
+                    <!-- Danger Zone Tab -->
+                    <div class="tab-content" id="danger-tab">
+                        <div class="danger-zone">
+                            <h4>Delete Account</h4>
+                            <p>Once you delete your account, there is no going back. Please be certain.</p>
+                            <button class="btn btn-danger">Delete Account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="modalOverlay">
+        <!-- Upload File Modal -->
+        <div class="modal" id="uploadFileModal">
+            <div class="modal-header">
+                <h3>Upload File</h3>
+                <button class="modal-close" data-close="uploadFileModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="upload-area" id="fileUploadArea">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <path d="M24 8L24 32M24 32L16 24M24 32L32 24M8 40L40 40" stroke="#4F46E5" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                    <p>Drag and drop files here or click to browse</p>
+                    <input type="file" id="fileInput" multiple>
+                </div>
+            </div>
+        </div>
+
+        <!-- New File Modal -->
+        <div class="modal" id="newFileModal">
+            <div class="modal-header">
+                <h3>Create New File</h3>
+                <button class="modal-close" data-close="newFileModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>File Name</label>
+                    <input type="text" class="form-control" id="newFileName" placeholder="Enter file name">
+                </div>
+                <div class="form-group">
+                    <label>File Type</label>
+                    <select class="form-control" id="newFileType">
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="js">JavaScript</option>
+                        <option value="json">JSON</option>
+                        <option value="txt">Text</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-close="newFileModal">Cancel</button>
+                <button class="btn btn-primary" id="createFileBtn">Create</button>
+            </div>
+        </div>
+
+        <!-- New Folder Modal -->
+        <div class="modal" id="newFolderModal">
+            <div class="modal-header">
+                <h3>Create New Folder</h3>
+                <button class="modal-close" data-close="newFolderModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Folder Name</label>
+                    <input type="text" class="form-control" id="newFolderName" placeholder="Enter folder name">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-close="newFolderModal">Cancel</button>
+                <button class="btn btn-primary" id="createFolderBtn">Create</button>
+            </div>
+        </div>
+
+        <!-- File Editor Modal -->
+        <div class="modal modal-large" id="fileEditorModal">
+            <div class="modal-header">
+                <h3 id="editorFileName">Edit File</h3>
+                <button class="modal-close" data-close="fileEditorModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <textarea class="code-editor" id="codeEditor" placeholder="Enter your code here..."></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-close="fileEditorModal">Cancel</button>
+                <button class="btn btn-secondary" id="saveAsBtn">Save As</button>
+                <button class="btn btn-primary" id="saveFileBtn">Save</button>
+            </div>
+        </div>
+
+        <!-- Context Menu -->
+        <div class="context-menu" id="contextMenu">
+            <div class="context-menu-item" data-action="open">Open</div>
+            <div class="context-menu-item" data-action="edit">Edit</div>
+            <div class="context-menu-item" data-action="rename">Rename</div>
+            <div class="context-menu-item" data-action="copy">Copy</div>
+            <div class="context-menu-item" data-action="move">Move</div>
+            <div class="context-menu-item" data-action="download">Download</div>
+            <hr class="context-menu-divider">
+            <div class="context-menu-item danger" data-action="delete">Delete</div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
